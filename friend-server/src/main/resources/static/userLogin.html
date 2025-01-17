@@ -3,104 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>用户登录</title>
+    <title>User Login</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f4f4f4;
+            padding: 20px;
+            background-color: #f4f4f9;
         }
-        .login-container {
-            background-color: white;
-            padding: 30px;
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            width: 300px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-        .login-container h2 {
+        h2 {
             text-align: center;
+            color: #333;
         }
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
-        .form-group label {
+        label {
             display: block;
-            font-size: 14px;
             margin-bottom: 5px;
+            font-weight: bold;
         }
-        .form-group input {
+        input {
             width: 100%;
             padding: 10px;
-            font-size: 14px;
+            font-size: 16px;
             border: 1px solid #ccc;
             border-radius: 4px;
         }
-        .form-group button {
+        button {
             width: 100%;
             padding: 10px;
-            background-color: #28a745;
+            background-color: #007BFF;
             color: white;
+            font-size: 16px;
             border: none;
             border-radius: 4px;
-            font-size: 16px;
             cursor: pointer;
         }
-        .form-group button:hover {
-            background-color: #218838;
+        button:hover {
+            background-color: #0056b3;
         }
         .error-message {
             color: red;
-            font-size: 14px;
             text-align: center;
+            margin-top: 15px;
+        }
+        .success-message {
+            color: green;
+            text-align: center;
+            margin-top: 15px;
         }
     </style>
 </head>
 <body>
-<div class="login-container">
-    <h2>用户登录</h2>
+
+<div class="container">
+    <h2>User Login</h2>
     <form id="loginForm">
         <div class="form-group">
-            <label for="userName">用户名</label>
-            <input type="text" id="userName" name="userName" placeholder="请输入用户名" required>
+            <label for="userName">Username</label>
+            <input type="text" id="userName" name="userName" required />
         </div>
         <div class="form-group">
-            <label for="userPassword">密码</label>
-            <input type="password" id="userPassword" name="userPassword" placeholder="请输入密码" required>
+            <label for="userPassword">Password</label>
+            <input type="password" id="userPassword" name="userPassword" required />
         </div>
-        <div class="form-group">
-            <button type="submit">登录</button>
-        </div>
+        <button type="submit">Login</button>
     </form>
-    <div class="error-message" id="errorMessage"></div>
+    <div id="responseMessage" class="error-message"></div>
 </div>
 
 <script>
-    // 获取表单和错误消息元素
-    const loginForm = document.getElementById('loginForm');
-    const errorMessage = document.getElementById('errorMessage');
+    document.getElementById('loginForm').addEventListener('submit', async function(event) {
+        event.preventDefault();  // Prevent the form from submitting the traditional way
 
-    // 登录请求
-    loginForm.addEventListener('submit', async function (event) {
-        event.preventDefault(); // 阻止表单默认提交行为
-
-        // 获取表单数据
+        // Get the input values
         const userName = document.getElementById('userName').value;
         const userPassword = document.getElementById('userPassword').value;
 
-        // 创建用户登录数据
+        // Prepare the data to send in the POST request
         const userDTO = {
             userName: userName,
             userPassword: userPassword
         };
 
+        // Send the request to the backend
         try {
-            // 发送登录请求
-            const response = await fetch('/user/login', {
+            const response = await fetch('http://localhost:8080/user/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -108,21 +105,24 @@
                 body: JSON.stringify(userDTO)
             });
 
-            const result = await response.json();
+            const data = await response.json();
 
-            if (result.code === 200) {
-                // 登录成功，跳转到其他页面或执行其他操作
-                alert('登录成功');
-                // 此处可以跳转到首页或者其他用户主页
+            if (response.ok) {
+                document.getElementById('responseMessage').classList.remove('error-message');
+                document.getElementById('responseMessage').classList.add('success-message');
+                document.getElementById('responseMessage').innerText = `Welcome, ${data.data.userName}!`;
             } else {
-                // 显示错误信息
-                errorMessage.textContent = result.message || '登录失败，请检查用户名和密码';
+                document.getElementById('responseMessage').classList.remove('success-message');
+                document.getElementById('responseMessage').classList.add('error-message');
+                document.getElementById('responseMessage').innerText = data.message || 'Login failed!';
             }
         } catch (error) {
-            // 网络错误或其他错误
-            errorMessage.textContent = '发生错误，请稍后再试';
+            document.getElementById('responseMessage').classList.remove('success-message');
+            document.getElementById('responseMessage').classList.add('error-message');
+            document.getElementById('responseMessage').innerText = 'An error occurred. Please try again later.';
         }
     });
 </script>
+
 </body>
 </html>
