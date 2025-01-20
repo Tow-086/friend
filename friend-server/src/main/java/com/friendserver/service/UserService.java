@@ -1,6 +1,7 @@
 package com.friendserver.service;
 
-import com.friendpojo.dto.UserDTO;
+import com.friendpojo.dto.UserLoginDTO;
+import com.friendpojo.dto.UserRegistDTO;
 import com.friendpojo.entity.User;
 import org.springframework.stereotype.Service;
 
@@ -8,8 +9,8 @@ import org.springframework.stereotype.Service;
 public interface UserService {
 
 
-    User LoginIn(UserDTO userDTO);
+    User login(UserLoginDTO userLoginDTO);
 
 
-    void Insert(String name, String password);
+    User insert(UserRegistDTO userRegistDTO);
 }

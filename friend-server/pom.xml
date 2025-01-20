@@ -20,6 +20,28 @@
             <version>1.0-SNAPSHOT</version>
         </dependency>
 
+
+
+<!--            &lt;!&ndash;mail邮件发送&ndash;&gt;-->
+<!--            <dependency>-->
+<!--                <groupId>org.springframework.boot</groupId>-->
+<!--                <artifactId>spring-boot-starter-mail</artifactId>-->
+<!--            </dependency>-->
+<!--            &lt;!&ndash;redis场景启动器&ndash;&gt;-->
+<!--            <dependency>-->
+<!--                <groupId>org.springframework.boot</groupId>-->
+<!--                <artifactId>spring-boot-starter-data-redis</artifactId>-->
+<!--            </dependency>-->
+<!--            &lt;!&ndash; redis 连接池 &ndash;&gt;-->
+<!--            &lt;!&ndash;新版本连接池lettuce&ndash;&gt;-->
+<!--            <dependency>-->
+<!--                <groupId>org.apache.commons</groupId>-->
+<!--                <artifactId>commons-pool2</artifactId>-->
+<!--            </dependency>-->
+
+
+
+
         <dependency>
             <groupId>com.friend</groupId>
             <artifactId>friend-pojo</artifactId>
@@ -98,6 +120,14 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
         </dependency>
 
         <dependency>

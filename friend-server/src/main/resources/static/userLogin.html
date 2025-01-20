@@ -90,7 +90,7 @@
         const userPassword = document.getElementById('userPassword').value;
 
         // Prepare the data to send in the POST request
-        const userDTO = {
+        const userLoginDTO = {
             userName: userName,
             userPassword: userPassword
         };
@@ -102,7 +102,7 @@
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(userDTO)
+                body: JSON.stringify(userLoginDTO)
             });
 
             const data = await response.json();
