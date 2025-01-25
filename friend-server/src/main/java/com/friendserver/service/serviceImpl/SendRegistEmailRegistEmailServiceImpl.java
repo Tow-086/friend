@@ -1,7 +1,7 @@
 package com.friendserver.service.serviceImpl;
 
 
-import com.friendserver.service.SendService;
+import com.friendserver.service.SendRegistEmailService;
 import com.friendcommon.util.VerifyCodeUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -13,8 +13,6 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeUtility;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -23,7 +21,7 @@ import java.util.concurrent.TimeUnit;
 @Service
 @Slf4j
 
-public class SendServiceImpl implements SendService {
+public class SendRegistEmailRegistEmailServiceImpl implements SendRegistEmailService {
 
     @Resource
     private StringRedisTemplate stringRedisTemplate;

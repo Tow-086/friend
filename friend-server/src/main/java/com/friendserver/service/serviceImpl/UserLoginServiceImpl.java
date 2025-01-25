@@ -5,8 +5,8 @@ import com.friendpojo.dto.UserRegistDTO;
 import com.friendpojo.entity.User;
 import com.friendserver.exception.AccountException; // 添加自定义异常类的导入
 import com.friendserver.mapper.UserLoginMapper;
-import com.friendserver.service.SendService;
-import com.friendserver.service.UserService;
+import com.friendserver.service.SendRegistEmailService;
+import com.friendserver.service.UserLoginService;
 import com.friendcommon.util.VerifyCodeUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,26 +16,25 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 @Import(VerifyCodeUtil.class)
-public class UserServiceImpl implements UserService {
+public class UserLoginServiceImpl implements UserLoginService {
 
     @Autowired
     private UserLoginMapper userLoginMapper;
     @Autowired
-    private SendService sendService;
+    private SendRegistEmailService sendRegistEmailService;
     @Autowired
     private VerifyCodeUtil verifyCodeUtil;
 
     @Override
     public User login(UserLoginDTO userLoginDTO) {
         String userEmail = userLoginDTO.getUserEmail();
-        String userName = userLoginDTO.getUserName();
         String userPassword = userLoginDTO.getUserPassword();
 
         User user = userLoginMapper.getByUserEmail(userEmail);
         log.info("User login attempt: {}", userLoginDTO);
 
         if (user == null) {
-            throw new AccountException("用户不存在");
+            throw new AccountException("邮箱不存在");
         }
 
         if (!user.getUserPassword().equals(userPassword)) {

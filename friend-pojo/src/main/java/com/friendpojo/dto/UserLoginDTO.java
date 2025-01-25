@@ -13,8 +13,6 @@ public class UserLoginDTO implements Serializable {
 //    private int userId;
     @ApiModelProperty(value = "邮箱")
     private String userEmail;
-    @ApiModelProperty(value = "用户名")
-    private String userName;
     @ApiModelProperty(value = "密码")
     private String userPassword;
 
