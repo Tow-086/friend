@@ -3,7 +3,9 @@ package com.friendserver;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -14,6 +16,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableCaching//开启缓存功能
 @EnableScheduling//开启定时任务功能
 @EnableAsync  // 启用异步
+@EntityScan(basePackages = {"com.friendpojo.entity"})
+@ComponentScan(basePackages = {"com.friendserver", "com.friendpojo"})
 public class FriendServerApplication {
 
     public static void main(String[] args) {
