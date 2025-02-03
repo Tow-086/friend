@@ -12,6 +12,7 @@ import java.io.Serializable;
 public class UserLoginVO implements Serializable {
     @Getter
     @Setter
+    private int userId;
     private String userName;
     private String userEmail;
     private String userPassword;

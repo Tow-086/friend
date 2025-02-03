@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>聊天</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<nav>
+    <a href="/index.html">首页</a>
+</nav>
+<h1>聊天</h1>
+<div id="welcomeMessage"></div>
+<div id="chatMessages">
+    <!-- 消息会动态插入到这里 -->
+</div>
+<div>
+    <label for="receiverId">接收者 ID:</label>
+    <input type="text" id="receiverId" placeholder="接收者 ID" required>
+    <button id="loadMoreMessages">加载更多</button>
+</div>
+<form id="sendMessageForm">
+    <input type="text" id="messageContent" placeholder="输入消息内容" required>
+    <button type="submit">发送</button>
+</form>
+<script src="/js/chat.js"></script>
+<script src="/js/websocket.js"></script>
+</body>
+</html>

@@ -11,6 +11,8 @@ import java.io.Serializable;
 public class UserLoginDTO implements Serializable {
 
 //    private int userId;
+    @ApiModelProperty(value = "id")
+    private int userId;
     @ApiModelProperty(value = "邮箱")
     private String userEmail;
     @ApiModelProperty(value = "用户名")

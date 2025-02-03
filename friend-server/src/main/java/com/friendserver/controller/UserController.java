@@ -35,6 +35,7 @@ public class UserController {
         // 构建返回的 UserLoginVO 对象
         UserLoginVO userLoginVO = UserLoginVO.builder()
                 .userName(user.getUserName())
+                .userId(user.getUserId())
                 .build();
         // 返回成功结果
         return Result.success(userLoginVO);
